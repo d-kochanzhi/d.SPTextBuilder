@@ -17,7 +17,9 @@ Sample code
 
 ```csharp
 
-TextBuilder<SampleListItemProvider> textBuilder = new TextBuilder<SampleListItemProvider>(new SampleListItemProvider(item));
+TextBuilder<SampleListItemProvider> textBuilder = 
+new TextBuilder<SampleListItemProvider>(new SampleListItemProvider(item));
+
                 string mailTemplate = "Dear customer, " + Environment.NewLine +
                 "We are pleased to announce: " + Environment.NewLine +
                 "ItemTitle: {%Field(Title)%}" + Environment.NewLine +

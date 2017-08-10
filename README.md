@@ -37,5 +37,3 @@ TextBuilder<SampleListItemProvider> textBuilder = new TextBuilder<SampleListItem
                 string output = textBuilder.Parse(mailTemplate);
 
 ```
-
-[on dzsoft.ru](https://github.com/jbt/markdown-editor) 

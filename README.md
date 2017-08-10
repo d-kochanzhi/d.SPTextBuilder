@@ -13,58 +13,48 @@ Template tags:
 * Accessing to method with parameters {%CustomMethodWithParams(6,9)%}
 * Formating values {%CustomFormatProperty:dd/MM/yyyy%}
 
-Sample code
+Sample code:
 
+Creating provider
 
 ```csharp
- internal class SampleListItemProvider : d.SPTextBuilder.Providers.SPListItemBaseProvider
+internal class SampleListItemProvider : d.SPTextBuilder.Providers.SPListItemBaseProvider
+{
+    #region Properties
+    [TextBuilderMethod]
+    public int CustomProperty
     {
-        #region Properties
-
-        [TextBuilderMethod]
-        public int CustomProperty
-        {
-            get
-            {
-                return 45;
-            }
-        }
-
-        [TextBuilderMethod]
-        public DateTime CustomFormatProperty
-        {
-            get
-            {
-                return DateTime.Now;
-            }
-        }
-
-        #endregion Properties
-
-        #region Constructors
-
-        public SampleListItemProvider(Microsoft.SharePoint.SPListItem item) : base(item)
-        {
-        }
-
-        #endregion Constructors
-
-        #region Methods
-
-        [TextBuilderMethod]
-        public int CustomMethodNoParams()
-        {
-            return 1;
-        }
-
-        [TextBuilderMethod]
-        public int CustomMethodWithParams(int a, int b)
-        {
-            return a + b;
-        }
-        #endregion Methods
+        get {return 45;}
     }
+    [TextBuilderMethod]
+    public DateTime CustomFormatProperty
+    {
+        get {return DateTime.Now;}
+    }
+    #endregion Properties
+	
+    #region Constructors
+    public SampleListItemProvider(Microsoft.SharePoint.SPListItem item) : base(item)
+    {
+    }
+    #endregion Constructors
+
+    #region Methods
+    [TextBuilderMethod]
+    public int CustomMethodNoParams()
+    {
+        return 1;
+    }
+    [TextBuilderMethod]
+    public int CustomMethodWithParams(int a, int b)
+    {
+        return a + b;
+    }
+    #endregion Methods
+}
 ```
+
+Filling text template with SPListItem values
 	
 ```csharp
 

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package dslVersion="1.0.0.0" 
+        Id="c649172f-5035-460b-be62-47c62bb52370" 
+        solutionId="c649172f-5035-460b-be62-47c62bb52370" 
+        xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" 
+        name="d.SPTextBuilder"
+        sharePointProductVersion="15.0">
+</package>

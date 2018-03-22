@@ -62,7 +62,7 @@ namespace d.SPTextBuilder
 
         #endregion Constructors
 
-        #region Methods
+      #region Methods
 
         /// <summary>
         /// Parse text template and fill with SPListItem values
@@ -82,7 +82,7 @@ namespace d.SPTextBuilder
         {
             StringBuilder stringBuilder = new StringBuilder(template.Length);
             List<string> listErrors = new List<string>();
-            Regex regexTemplate = new Regex("{%((?<paramName>.*?)(\\((?<addParams>.*?)\\))?(:(?<format>.*?))?)%}", RegexOptions.Multiline | RegexOptions.Singleline);
+            Regex regexTemplate = new Regex("{%((?<paramName>.*?)(\\((?<addParams>.*?)\\))?(,(?<chars>-?\\d+?))?(:(?<format>.*?))?)%}", RegexOptions.Multiline | RegexOptions.Singleline);
             Regex regexParams = new Regex("\\s*,\\s*", RegexOptions.Multiline | RegexOptions.Singleline);
             MatchCollection matchCollection = regexTemplate.Matches(template);
             int num = 0;
@@ -93,6 +93,7 @@ namespace d.SPTextBuilder
                 string paramName = match.Groups["paramName"].Value.ToLower().Trim();
                 string addParams = match.Groups["addParams"].Value.Trim();
                 string format = match.Groups["format"].Value.Trim();
+                string chars = match.Groups["chars"].Value.Trim();
 
                 try
                 {                    
@@ -138,7 +139,7 @@ namespace d.SPTextBuilder
                         }
 
                         object v = memberInfo.GetValueExt(this.Provider, methodParams?.ToArray());
-                        format = "{0" + ((!string.IsNullOrEmpty(format)) ? ":" + format : "") + "}";
+                        format = "{0" + (!string.IsNullOrEmpty(chars) ? "," + chars : "") +  ((!string.IsNullOrEmpty(format)) ? ":" + format : "") + "}";
                         stringBuilder.Append(string.Format(format, v));
 
                         num = match.Index + match.Length;
